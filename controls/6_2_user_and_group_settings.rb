@@ -249,7 +249,7 @@ control 'cis-dil-benchmark-6.2.13' do
   passwd_files.each do |f|
     passwd(f).homes.each do |home|
       next unless file("#{home}/.netrc").exist?
-      describe.one do
+      describe file("#{home}/.netrc") do
         it { should_not be_readable.by 'group' }
         it { should_not be_writable.by 'group' }
         it { should_not be_executable.by 'group' }
